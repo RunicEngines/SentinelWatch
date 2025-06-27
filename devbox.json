@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
+  "packages": [
+    "nodejs@22",
+    "pnpm"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to Nuxt Development Environment!'",
+      "node --version",
+      "npm --version"
+    ],
+    "scripts": {
+      "dev": [
+        "npm run dev"
+      ],
+      "build": [
+        "npm run build"
+      ],
+      "test": [
+        "npm test"
+      ]
+    }
+  }
+}
