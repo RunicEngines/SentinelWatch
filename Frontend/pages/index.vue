@@ -1,5 +1,7 @@
 <template>
-    <div class="flex justify-center">
-        <p class=" text-5xl text-white  "> HOME</p>
+    <div class="flex justify-center text-white flex-col">
+        <p class=" text-5xl font-bold "> HOME</p>
+        
+        <p class=" ">todo more info </p>
     </div>
 </template>

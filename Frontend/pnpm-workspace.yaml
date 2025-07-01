@@ -5,3 +5,4 @@ onlyBuiltDependencies:
   - inotify
   - sharp
   - unrs-resolver
+  - vue-demi
