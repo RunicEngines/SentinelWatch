@@ -1,5 +1,7 @@
 <template>
-    <div>
-        <h1 class=" text-6xl text-white">Home page </h1>
+    <div class="flex justify-center text-white flex-col">
+        <p class=" text-5xl font-bold "> HOME</p>
+        
+        <p class=" ">todo more info </p>
     </div>
 </template>
