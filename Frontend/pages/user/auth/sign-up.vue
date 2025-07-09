@@ -57,7 +57,6 @@
 </template>
 
 <script setup lang="ts">
-import { options } from '#build/eslint.config.mjs'
 
 definePageMeta({
   layout: 'login-signin'
