@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     '@pinia/nuxt',
     'nuxt-toast',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxt/ui'
 
   ],
   app: {
