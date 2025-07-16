@@ -1,24 +1,26 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
   "packages": [
-    "nodejs@22",
+    "nodejs@20",
     "pnpm"
   ],
   "shell": {
     "init_hook": [
       "echo 'Welcome to Nuxt Development Environment!'",
       "node --version",
-      "npm --version"
+      "pnpm --version",
+      "export NPM_CONFIG_PREFIX=${HOME}/.npm-global",
+      "export PATH=${NPM_CONFIG_PREFIX}/bin:${PATH}"
     ],
     "scripts": {
       "dev": [
-        "npm run dev"
+        "pnpm dev"
       ],
       "build": [
-        "npm run build"
+        "pnpm build"
       ],
       "test": [
-        "npm test"
+        "pnpm test"
       ]
     }
   }

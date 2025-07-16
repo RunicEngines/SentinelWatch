@@ -1,42 +1,63 @@
 <script setup lang="ts">
 import logoSrc from '~/assets/logo.png'
-
-
 </script>
 
 <template>
-    <header class="flex flex-row bg-gray-900 w-full h-20 gap-3.5 border-b-2 border-white ">
-        <NuxtLink to="/" :prefetch="true" class=" flex  flex-2/12 flex-row text-center items-center ">
-            <img class=" w-22 filter invert" :src="logoSrc" alt="Logo">
-            <div class=" text-3xl text-white justify-center mt-5 ">SENTINELWATCH</div>
+  <div class="flex flex-col min-h-screen">
+    <header class="flex flex-row bg-gray-900 w-full h-20 items-center gap-3.5 border-b-2 border-white px-4">
+      <NuxtLink 
+        to="/" 
+        :prefetch="true" 
+        class="flex items-center space-x-4"
+      >
+        <img 
+          class="w-16 filter invert" 
+          :src="logoSrc" 
+          alt="Logo"
+        >
+        <div class="text-3xl text-white">SENTINELWATCH</div>
+      </NuxtLink>
+
+      <nav class="ml-10 flex-grow">
+        <NuxtLink 
+          to="/projects" 
+          class="text-3xl text-white hover:text-blue-400 transition-colors"
+        >
+          Projects
         </NuxtLink>
-        <div class=" flex  flex-1/2   m-4  bg-gray-800 rounded-3xl ">
-            <NuxtLink to="/projects/" class="= ml-10  text-3xl text-white">
-                projects
-            </NuxtLink>
+      </nav>
+
+      <div class="flex space-x-4  ">
+        <div class="grid grid-cols-1 border rounded-2xl overflow-hidden">
+          <NuxtLink 
+            to="/user/auth/login" 
+            class="px-4 py-2 text-white hover:bg-blue-400 transition-colors"
+          >
+            Login
+          </NuxtLink>
+          <div class="border-t border-gray-700">          <NuxtLink 
+            to="/user/auth/sign-up" 
+            class="px-4 py-2 text-white hover:bg-blue-400 transition-colors"
+          >
+            Sign Up
+          </NuxtLink>
+          </div>
 
         </div>
-        <div class=" ml-auto  grid  grid-cols-1 border  rounded-2xl  ">
-            <NuxtLink to="/user/auth/login" class="hover:bg-blue-400   flex justify-center  items-center   rounded-t-2xl  ">
-                <div
-                    class="    flex  justify-center    text-white    font-bold      mx-1    ">
-                    <p>login</p>
-
-                </div>
-            </NuxtLink>
-            <NuxtLink to="user/auth/sign-up" class="hover:bg-blue-400    justify-center  items-center   rounded-b-2xl ">
-                <div
-                    class="  flex items-center justify-center    text-white  border-t-2  font-bold      mx-1  hover:bg-blue-400  ">
-                    <p>sign up</p>
-
-                </div>
-            </NuxtLink>
-        </div>
+      </div>
     </header>
-    <main class="bg-gray-800 w-full h-screen">
-        <slot />
+
+    <main class="flex-grow bg-gray-800 w-full">
+      <slot />
     </main>
-    <footer class=" text-white  bg-gray-900 h-3">
-        © sentinel Inc.
+
+    <footer class="text-white bg-gray-900 h-16 flex items-center justify-center">
+      © Sentinel Inc. {{ new Date().getFullYear() }}
     </footer>
+  </div>
 </template>
+
+<style scoped>
+/* Optional additional styling */
+
+</style>
