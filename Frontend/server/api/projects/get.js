@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-    let url = "http://localhost:8080/environments"
+    let url = "http://localhost:8080/projects"
     const query = getQuery(event)
 
     const queryParams = Object.entries(query)

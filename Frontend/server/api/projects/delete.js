@@ -1,4 +1,17 @@
 export default defineEventHandler(async (event) => {
-    $fetch(`http://localhost:8080/projects/${event.id}`)
-    return event.id + "is deleted"
-})
+  try {
+    const { id } = getQuery(event);
+
+
+    await $fetch(`http://localhost:8080/projects/${id}`, {
+      method: "DELETE",
+    });
+
+    return { message: `Project ${id} is deleted` };
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      message: "Failed to delete project",
+    });
+  }
+});

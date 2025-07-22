@@ -1,22 +1,36 @@
-<script setup lang="ts">
-const { data } = await useFetch("/api/projects/get")
+<script setup lang="js">
+const { data: response } = await useFetch("/api/projects/get")
+const fieldsData = ref([])
+const rows = ref([])
+
+if (response.value) {
+    fieldsData.value = Object.keys(response.value[0] || {}).map(key => ({ title: key }))
+    rows.value = response.value
+}
 </script>
-
 <template>
-    <div>
-        <div class="text-5xl flex items-center justify-center">Projects</div>
-        hello world
-        {{ data }}
-        <DynamicTable :fields="[
-            { title: 'Name' },
-            { title: 'Email' },
-            { title: 'Age' }
-        ]" :data="[
-            { name: 'John Doe', email: 'john@example.com', age: 30 },
-            { name: 'Jane Smith', email: 'jane@example.com', age: 25 }
-        ]" />
-
-
+    <div class=" ">
+        <div class="text-5xl flex items-center justify-center ">Projects</div>
+        <DynamicTable 
+        class="m-3 w-fit"
         
+        :fields="[
+            { title: 'id' },
+            { title: 'name' },
+            { title: 'description' },
+            { title: 'enabled' },
+            { title: 'created_at' },
+            { title: 'updated_at' }
+
+        ]
+            " :data="response" :disable="{
+                id: true,
+                name: true,
+                description: true,
+                enabled:false,
+                created_at:false,
+                updated_at:false
+            }" />
+        {{ }}
     </div>
 </template>
