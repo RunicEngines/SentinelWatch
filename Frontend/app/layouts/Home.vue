@@ -1,21 +1,8 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@nuxt/ui';
 import logoSrc from '~/assets/logo.png'
-const Project_items = ref<DropdownMenuItem[][]>([
-  [
-    {
-      label: 'add',
-      icon: 'i-lucide-plus',
-      to: "/projects/create",
-      type: 'link'
-    },
-    {
-      label:"delete",
-      icon:"i-lucide-delete",
-      to:"/projects/delete"
-    }
-  ]
-])
+
+import { BookPlus } from 'lucide-vue-next';
+
 
 </script>
 
@@ -27,18 +14,9 @@ const Project_items = ref<DropdownMenuItem[][]>([
         <div class="text-3xl text-white">SENTINELWATCH</div>
       </NuxtLink>
 
-      <nav class="ml-10 flex-grow">
-        <NuxtLink to="/projects" class="text-3xl text-white hover:text-blue-400 transition-colors">
-          Projects
-        </NuxtLink>
-        <UDropdownMenu :items="Project_items" :ui="{
-          content: 'w-48'
-        }">
-          <UButton icon="i-lucide-arrow-down" color="neutral" variant="outline" />
-        </UDropdownMenu>
-      </nav>
 
-      <div class="flex space-x-4  ">
+
+      <div class="flex space-x-4    mr-auto   ">
         <div class="grid grid-cols-1 border rounded-2xl overflow-hidden">
           <NuxtLink to="/user/auth/login" class="px-4 py-2 text-white hover:bg-blue-400 transition-colors">
             Login
@@ -53,8 +31,24 @@ const Project_items = ref<DropdownMenuItem[][]>([
       </div>
     </header>
 
-    <main class="flex-grow bg-gray-800 w-full">
-      <slot />
+    <main class="flex bg-gray-800 w-full">
+      <div>
+        <div class=" bg-gray-900 border  w-75   h-screen">
+          <div name="users"></div>
+          <div class=" flex  my-1">
+            <p class=" font-bold  rounded-lg p-2">your projects</p>
+            <NuxtLink to="/projects/create"
+              class=" ml-12 border flex  w-25 hover:bg-green-500   p-2  rounded-lg bg-green-600  font-semibold">
+              <div>Project</div>
+              <BookPlus />
+            </NuxtLink>
+          </div>
+          <ViewProjects></ViewProjects>
+        </div>
+      </div>
+      <div>
+        <slot />
+      </div>
     </main>
 
     <footer class="text-white bg-gray-900 h-16 flex items-center justify-center">
