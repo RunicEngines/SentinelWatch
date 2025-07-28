@@ -1,14 +1,14 @@
 export default defineEventHandler(async (event) => {
     let url = "http://localhost:8080/projects"
     const query = getQuery(event)
-
+    if (query != null) {
     const queryParams = Object.entries(query)
         .map(([key, value]) => `${key}=${value}`)
         .join('&')
 
     if (queryParams) {
         url += `?${queryParams}`
-    }
+    }}
 
     try {
         const response = await $fetch(url)
