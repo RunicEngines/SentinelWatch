@@ -28,6 +28,7 @@
     "nuxt-auth-utils": "0.5.20",
     "nuxt-toast": "1.1.4",
     "pinia": "^3.0.3",
+    "tailwind-scrollbar": "^4.0.2",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },

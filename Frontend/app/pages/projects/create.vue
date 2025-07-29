@@ -57,9 +57,9 @@ interface RepoData {
 }
 
 interface ProjectRequest {
-    description: string
-    enable: boolean
-    name: string
+    "description": string
+    "enabled": boolean
+    "name": string
 }
 
 definePageMeta({
@@ -86,57 +86,32 @@ const repo = ref('')
 const description = ref('')
 const message = ref<string | null>(null)
 const error_message = ref<string | null>(null)
-
-async function Submit() {
+const body = ref<ProjectRequest>({
+    description: description.value,
+    enabled: enabled.value,
+    name: `${owner.value}/${repo.value}`
+})
+function Submit() {
     try {
-        const { data, error } = await useFetch<{ data: RepoData }>('/api/githubApi/getRepo', {
-            method: 'GET',
-            params: {
-                owner: owner.value,
-                repo: repo.value
-            }
-        })
-
-        if (error.value) {
-            message.value = error.value?.message || 'An error occurred'
-            error_message.value = error.value?.message || 'An error occurred'
-            return
-        }
-
-        if (!description.value && data.value?.data?.description) {
-            description.value = data.value.data.description
-        }
-
         if (!description.value) {
             description.value = `Description for ${owner.value}/${repo.value}`
         }
 
         enabled.value = value.value === 'enable'
-
-        const requestBody: ProjectRequest = {
+        body.value = {
             description: description.value,
-            enable: enabled.value,  
+            enabled: enabled.value,
             name: `${owner.value}/${repo.value}`
         }
 
-
-        await $fetch('/api/projects/post', {
+        useFetch('/api/projects/post', {
             method: "POST",
-            body: requestBody
+            body: body
         })
-
         message.value = "success"
-        resetForm()
     } catch (err: any) {
         message.value = err.message || 'An unexpected error occurred'
     }
 }
 
-function resetForm() {
-    owner.value = ''
-    repo.value = ''
-    description.value = ''
-    value.value = 'enable'
-    enabled.value = true
-}
 </script>

@@ -1,15 +1,18 @@
 <script setup>
 import logoSrc from '~/assets/logo.png'
-
 import { BookPlus } from 'lucide-vue-next';
-const response = $fetch("/api/projects/get")
-let list_of_project = []
-for (let i = 0; i < response.length; i++) {
-  list_of_project.push(resposne[i]["name"])
+import { ref } from 'vue'
+
+const response = await useFetch("/api/projects/get")
+const list_of_project = ref([])
+
+if (response.data.value) {
+  const cleanData = JSON.parse(JSON.stringify(response.data.value))
+  for (let i = 0; i < cleanData.length; i++) {
+    list_of_project.value.push({name:cleanData[i]["name"],id:cleanData[i]["id"]})
+  }
 }
-
 </script>
-
 <template>
   <div class="flex flex-col min-h-screen">
     <header class="flex flex-row bg-gray-900 w-full h-20 items-center justify-between border-b-2 border-white px-4">
@@ -34,11 +37,12 @@ for (let i = 0; i < response.length; i++) {
     </header>
 
     <main class="flex bg-gray-800 w-full">
+
       <div>
         <div class=" bg-gray-900 border  w-75   h-screen">
           <div name="users"></div>
           <div class=" flex  my-1">
-            <p class=" font-bold  rounded-lg p-2">your projects</p>
+            <p class="   ml-2 font-bold  rounded-lg p-2">your projects</p>
             <NuxtLink to="/projects/create"
               class=" ml-12 border flex  w-25 hover:bg-blue-500   p-2  rounded-lg bg-blue-600  font-semibold">
               <div>Project</div>
@@ -49,6 +53,7 @@ for (let i = 0; i < response.length; i++) {
         </div>
       </div>
       <div>
+
         <slot />
       </div>
     </main>

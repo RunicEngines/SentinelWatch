@@ -24,6 +24,7 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
+
       title: "SeninelWatch",
       meta: [
         { name: "description", content: "AI Code reviewer " }
