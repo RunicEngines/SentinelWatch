@@ -5,3 +5,10 @@
         <p class=" ">todo more info </p>
     </div>
 </template>
+
+<script>
+definePageMeta({
+    layout:'home'
+})
+
+</script>
