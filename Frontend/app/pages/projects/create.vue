@@ -2,7 +2,7 @@
     <div class="">
         <div class="justify-center flex m-32">
             <form class="w-fit justify-center flex flex-col">
-                <h1 class="text-2xl p-1 font-bold">Add a Git repo</h1>
+                <h1 class="text-2xl p-1 font-bold">Add a Project</h1>
                 <div class="border"></div>
                 <div class="flex justify-center">
                     <div class="flex flex-col">
@@ -51,10 +51,7 @@
 <script setup lang="ts">
 import type { RadioGroupItem, RadioGroupValue } from '@nuxt/ui'
 
-interface RepoData {
-    description?: string
-    name?: string
-}
+
 
 interface ProjectRequest {
     "description": string
@@ -104,11 +101,12 @@ function Submit() {
             name: `${owner.value}/${repo.value}`
         }
 
-        useFetch('/api/projects/post', {
+        let {data,error} = useFetch('/api/projects/post', {
             method: "POST",
             body: body
         })
         message.value = "success"
+        navigateTo(`/`)
     } catch (err: any) {
         message.value = err.message || 'An unexpected error occurred'
     }
