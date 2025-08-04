@@ -20,8 +20,36 @@
                     <textarea v-model="description" placeholder="Description of Environment"
                         class="mx-2 border rounded-lg hover:border-blue-500 p-2"></textarea>
                 </div>
-                <div class="mt-4">
-                    <URadioGroup class="mx-2" color="info" variant="card" v-model="value" :items="items" />
+                <div class="mt-4 mx-2">
+                    <RadioGroup v-model="value" class="space-y-2">
+                        <RadioGroupLabel class="text-sm font-medium">Environment Status</RadioGroupLabel>
+                        <div class="flex space-x-2">
+                            <RadioGroupOption 
+                                v-for="item in items" 
+                                :key="item.value"
+                                :value="item.value"
+                                v-slot="{ checked }"
+                                class="flex-1"
+                            >
+                                <div 
+                                    :class="[
+                                        checked ? 'bg-blue-500 text-white' : 'bg-gray-800 text-gray-300',
+                                        'p-3 rounded-lg cursor-pointer border'
+                                    ]"
+                                >
+                                    <RadioGroupLabel as="p" class="font-medium">
+                                        {{ item.label }}
+                                    </RadioGroupLabel>
+                                    <RadioGroupDescription 
+                                        as="p" 
+                                        class="text-xs opacity-70"
+                                    >
+                                        {{ item.description }}
+                                    </RadioGroupDescription>
+                                </div>
+                            </RadioGroupOption>
+                        </div>
+                    </RadioGroup>
                 </div>
                 <button type="button" @click="Submit()" class="hover:bg-blue-400 mt-1.5 border rounded-lg bg-blue-500">
                     Create Environment
@@ -37,9 +65,13 @@
         </div>
     </div>
 </template>
-
 <script setup lang="ts">
-import type { RadioGroupItem, RadioGroupValue } from '@nuxt/ui'
+import { 
+    RadioGroup, 
+    RadioGroupLabel, 
+    RadioGroupOption, 
+    RadioGroupDescription 
+} from '@headlessui/vue'
 
 interface EnvironmentRequest {
     description?: string
@@ -48,7 +80,6 @@ interface EnvironmentRequest {
     project_id: string
 }
 
-
 definePageMeta({
     layout: 'forms'
 })
@@ -56,8 +87,7 @@ definePageMeta({
 const route = useRoute()
 const id = route.params.id
 
-
-const items = ref<RadioGroupItem[]>([
+const items = [
     {
         label: 'Enable',
         value: 'enable',
@@ -68,33 +98,29 @@ const items = ref<RadioGroupItem[]>([
         value: 'disable',
         description: 'Disables the environment'
     }
-])
+]
 
-const value = ref<RadioGroupValue>('enable')
+const value = ref('enable')
 const name = ref('')
 const description = ref('')
 const message = ref<string | null>(null)
 
-
 async function Submit() {
     try {
         if (!name.value) {
-            message.value = 'Name is req(""uired'
+            message.value = 'Name is required'
             return
         }
-
         const body = ref<EnvironmentRequest>({
             description: description.value || `Environment: ${name.value}`,
             enabled: value.value === 'enable',
             name: name.value,
             project_id: id as string
         })
-
         const { data, error } = await useFetch('/api/environments/post', {
             method: "POST",
             body: body.value
         })
-
         if (error.value) {
             message.value = error.value.message || 'An unexpected error occurred'
         } else {
@@ -103,9 +129,13 @@ async function Submit() {
             description.value = ''
             navigateTo(`/project/${id}`)
         }
-
     } catch (err: any) {
         message.value = err.message || 'An unexpected error occurred'
     }
+}
+
+
+function definePageMeta(arg0: { layout: string }) {
+    throw new Error('Function not implemented.')
 }
 </script>

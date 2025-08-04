@@ -42,9 +42,9 @@ if (response.data.value) {
         <div class=" bg-gray-900 border  w-75   h-screen">
           <div name="users"></div>
           <div class=" flex  my-1">
-            <p class="   ml-2 font-bold  rounded-lg p-2">your projects</p>
+            <p class="   ml-2 font-bold  rounded-lg p-2 text-white">your projects</p>
             <NuxtLink to="/projects/create"
-              class=" ml-12 border flex  w-25 hover:bg-blue-500   p-2  rounded-lg bg-blue-600  font-semibold">
+              class=" ml-12 border flex  w-25 hover:bg-blue-500    text-white p-2  rounded-lg bg-blue-600  font-semibold">
               <div>Project</div>
               <BookPlus />
             </NuxtLink>

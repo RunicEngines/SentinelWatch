@@ -1,29 +1,25 @@
-import { defineNuxtConfig } from 'nuxt/config'
-
+// nuxt.config.ts
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-15',
+  compatibilityDate: "2025-05-15",
   devtools: {
     enabled: true,
-
     timeline: {
-      enabled: true
-    }
+      enabled: true,
+    },
   },
-
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@pinia/nuxt',
-    '@nuxt/ui'
-
-  ],
+  postcss: {
+    plugins: {
+      "postcss-import": {},
+      tailwindcss: {},
+      autoprefixer: {},
+      "@tailwindcss/postcss": {},
+    },
+  },
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
   app: {
     head: {
-
-      title: "SeninelWatch",
-      meta: [
-        { name: "description", content: "AI Code reviewer " }
-      ]
-    }
-  }
-
-})
+      title: "SentinelWatch",
+      meta: [{ name: "description", content: "AI Code reviewer" }],
+    },
+  },
+});

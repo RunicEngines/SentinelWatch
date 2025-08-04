@@ -12,8 +12,8 @@
                 <div class="">
                     <div class=" text-lg flex w-full">
                         <p class=" p-1.5">Environments</p>
-                        <NuxtLink :to="`/environments/${projectId}-create`" class=" ml-auto border flex  p-1 w-fit bg-blue-500 rounded-lg">
-                            <p class=" mr-1">environment</p>
+                        <NuxtLink :to="`/environments/${projectId}-create`" class=" ml-auto border flex  hover:bg-blue-400  px-2 h-7 w-fit bg-blue-500 rounded-lg">
+                            <p class=" ">environment</p>
                             <FolderPlus />       
                         </NuxtLink>
                     </div>

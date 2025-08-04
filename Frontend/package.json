@@ -5,26 +5,26 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@dicebear/collection": "^9.2.3",
     "@dicebear/core": "^9.2.3",
+    "@headlessui/vue": "^1.7.23",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia/nuxt": "^0.5.5",
-    "@tailwindcss/vite": "^4.1.11",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "jdenticon": "^3.3.0",
-    "lucide-vue-next": "^0.525.0",
-    "nuxt": "^4.0.2",
-    "tailwind-scrollbar": "^4.0.2",
+    "lucide-vue-next": "^0.363.0",
+    "pinia": "^2.3.1",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@nuxt/ui": "^2.0.0", 
-    "@nuxtjs/tailwindcss": "^6.0.0",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.1" 
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@types/node": "^20.19.9",
+    "nuxt": "^4.0.2",
+    "typescript": "^5.9.2"
   }
 }

@@ -31,8 +31,36 @@
                     <textarea v-model="description" placeholder="Description of Project"
                         class="mx-2 border rounded-lg hover:border-blue-500 p-2"></textarea>
                 </div>
-                <div class="mt-4">
-                    <URadioGroup class="mx-2" color="info" variant="card" v-model="value" :items="items" />
+                <div class="mt-4 mx-2">
+                    <RadioGroup v-model="value" class="space-y-2">
+                        <RadioGroupLabel class="text-sm font-medium">Project Status</RadioGroupLabel>
+                        <div class="flex space-x-2">
+                            <RadioGroupOption 
+                                v-for="item in items" 
+                                :key="item.value"
+                                :value="item.value"
+                                v-slot="{ checked }"
+                                class="flex-1"
+                            >
+                                <div 
+                                    :class="[
+                                        checked ? 'bg-blue-500 text-white' : 'bg-gray-800 text-gray-300',
+                                        'p-3 rounded-lg cursor-pointer border'
+                                    ]"
+                                >
+                                    <RadioGroupLabel as="p" class="font-medium">
+                                        {{ item.label }}
+                                    </RadioGroupLabel>
+                                    <RadioGroupDescription 
+                                        as="p" 
+                                        class="text-xs opacity-70"
+                                    >
+                                        {{ item.description }}
+                                    </RadioGroupDescription>
+                                </div>
+                            </RadioGroupOption>
+                        </div>
+                    </RadioGroup>
                 </div>
                 <button type="button" @click="Submit()" class="hover:bg-blue-400 mt-1.5 border rounded-lg bg-blue-500">
                     Add Repo
@@ -49,8 +77,12 @@
     </div>
 </template>
 <script setup lang="ts">
-import type { RadioGroupItem, RadioGroupValue } from '@nuxt/ui'
-
+import { 
+    RadioGroup, 
+    RadioGroupLabel, 
+    RadioGroupOption, 
+    RadioGroupDescription 
+} from '@headlessui/vue'
 
 
 interface ProjectRequest {
@@ -63,7 +95,7 @@ definePageMeta({
     layout: 'forms'
 })
 
-const items = ref<RadioGroupItem[]>([
+const items = [
     {
         label: 'Enable',
         value: 'enable',
@@ -74,33 +106,31 @@ const items = ref<RadioGroupItem[]>([
         value: 'disable',
         description: 'Disables AI to review code for everyone'
     }
-])
+]
 
-const value = ref<RadioGroupValue>('enable')
+const value = ref('enable')
 const enabled = ref(true)
 const owner = ref('')
 const repo = ref('')
 const description = ref('')
 const message = ref<string | null>(null)
-const error_message = ref<string | null>(null)
 const body = ref<ProjectRequest>({
     description: description.value,
     enabled: enabled.value,
     name: `${owner.value}/${repo.value}`
 })
+
 function Submit() {
     try {
         if (!description.value) {
             description.value = `Description for ${owner.value}/${repo.value}`
         }
-
         enabled.value = value.value === 'enable'
         body.value = {
             description: description.value,
             enabled: enabled.value,
             name: `${owner.value}/${repo.value}`
         }
-
         let {data,error} = useFetch('/api/projects/post', {
             method: "POST",
             body: body
@@ -112,4 +142,8 @@ function Submit() {
     }
 }
 
+
+function definePageMeta(arg0: { layout: string }) {
+    throw new Error('Function not implemented.')
+}
 </script>

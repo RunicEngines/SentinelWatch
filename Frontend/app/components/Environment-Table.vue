@@ -1,31 +1,34 @@
 <template>
-    <table class=" ">
-        <thead class=" border">
+    <table class=" w-full  border">
+        <thead class=" border bg-gray-900">
             <th>name</th>
             <th>enabled</th>
             <th>description</th>
             <th>created_at</th>
             <th>updated_at</th>
+            <th> </th>
         </thead>
         <tbody>
-            <tr v-for="env in props.data">
+            <tr v-for="env in props.data" class=" border hover:bg-gray-600">
                 <td>{{ env.name }}</td>
                 <td>{{ env.enabled }}</td>
                 <td>{{ env.description }}</td>
-                <td>{{ env.created_at }}</td>
-                <td>{{ env.updated_at }}</td>
+                <td>{{ TimestampsDifference(env.created_at) }}</td>
+                <td>{{ TimestampsDifference(env.updated_at) }}</td>
+                <td>
+
+                </td>
             </tr>
         </tbody>
     </table>
 </template>
 <script setup>
-
 const props = defineProps({
     data: {
         default: [
             {
                 "created_at": "2023-09-15T14:22:11.000Z",
-                "description": "Staging environment for beta testing",
+                "description": "Staging environment for beta ",
                 "enabled": true,
                 "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2g3h4i5j",
                 "name": "Staging",
@@ -53,6 +56,36 @@ const props = defineProps({
         ]
     }
 })
+
+function TimestampsDifference(timestamp) {
+    const current_time = Date.now();
+    const timpestamp = new Date(timestamp);
+    const time_difference_in_mill = Math.abs(current_time - timpestamp.getTime());
+
+    const years = time_difference_in_mill / 3.154e+10;
+    const months = time_difference_in_mill / 2.628e+9;
+    const weeks = time_difference_in_mill / 6.048e+8;
+    const days = time_difference_in_mill / 8.64e+7;
+    const hours = time_difference_in_mill / 3.6e+6;
+    const minutes = time_difference_in_mill / 6e+4;
+    const seconds = time_difference_in_mill / 1000;
+
+    if (years >= 1) {
+        return `${Math.floor(years)} year(s) ago`;
+    } else if (months >= 1) {
+        return `${Math.floor(months)} month(s) ago`;
+    } else if (weeks >= 1) {
+        return `${Math.floor(weeks)} week(s) ago`;
+    } else if (days >= 1) {
+        return `${Math.floor(days)} day(s) ago`;
+    } else if (hours >= 1) {
+        return `${Math.floor(hours)} hour(s) ago`;
+    } else if (minutes >= 1) {
+        return `${Math.floor(minutes)} minute(s) ago`;
+    } else {
+        return `${Math.floor(seconds)} second(s) ago`;
+    }
+}
 
 
 </script>
