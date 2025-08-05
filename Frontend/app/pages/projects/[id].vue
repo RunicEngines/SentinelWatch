@@ -21,7 +21,7 @@
                         </NuxtLink>
                     </div>
 
-                    <EnvironmentTable :data="environments" />
+                    <EnvironmentTable :id="projectId" />
                 </div>
             </div>
         </div>
