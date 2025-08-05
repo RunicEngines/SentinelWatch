@@ -38,7 +38,7 @@ if (response.data.value) {
 
     <main class="flex bg-gray-800 w-full">
 
-      <div>
+      <div class="   ">
         <div class=" bg-gray-900 border  w-75   h-screen">
           <div name="users"></div>
           <div class=" flex  my-1">
@@ -49,6 +49,7 @@ if (response.data.value) {
               <BookPlus />
             </NuxtLink>
           </div>
+          
           <ViewProjects :data="list_of_project"></ViewProjects>
         </div>
       </div>

@@ -30,7 +30,7 @@ import { BookPlus } from 'lucide-vue-next';
             </div>
         </header>
 
-        <main class="   w-full  h-screen">
+        <main class="  bg-gray-900  w-full  h-screen">
 
             <div>
                 <slot />

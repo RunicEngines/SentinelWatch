@@ -1,28 +1,49 @@
 <template>
     <table class=" w-full  border">
-        <thead class=" border bg-gray-900">
+        <thead class=" border  text-white bg-gray-900">
             <th>name</th>
             <th>enabled</th>
             <th>description</th>
             <th>created_at</th>
             <th>updated_at</th>
-            <th> </th>
+            <th>_</th>
         </thead>
-        <tbody>
-            <tr v-for="env in props.data" class=" border hover:bg-gray-600">
-                <td>{{ env.name }}</td>
-                <td>{{ env.enabled }}</td>
-                <td>{{ env.description }}</td>
-                <td>{{ TimestampsDifference(env.created_at) }}</td>
-                <td>{{ TimestampsDifference(env.updated_at) }}</td>
-                <td>
+        <tbody class="text-white">
+            <tr v-for="env in props.data" class="   border hover:bg-gray-600">
+                <td class=" border   p-2 "> {{ env["name"] }}</td>
+                <td class=" border px-4    "> {{ env["enabled"] }}</td>
+                <td class=" border  p-2   overflow-auto  "> {{ env["description"] }}</td>
+                <td class=" border  p-2 "> {{ TimestampsDifference(env["created_at"]) }}</td>
+                <td class=" border  p-2 "> {{ TimestampsDifference(env["updated_at"]) }}</td>
+                <td class="py-2 relative">
+                    <Menu>
+                        <MenuButton><ellipsis-vertical /></MenuButton>
+                        <MenuItems class="  flex flex-col gap-1">
+                            <MenuItem >
+                                <button class=" p-1 bg-red-500 rounded-lg hover:bg-red-400">Delete</button>
+                            </MenuItem>
+                            <MenuItem v-slot="{ active }">
+                                <button class=" p-1 bg-yellow-500 rounded-lg hover:bg-yellow-400">Patch</button>
 
+                            </MenuItem>
+
+                        </MenuItems>
+                    </Menu>
                 </td>
             </tr>
         </tbody>
     </table>
 </template>
+
+<script>
+
+</script>
+
 <script setup>
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+
+import { EllipsisVertical } from 'lucide-vue-next';
+
 const props = defineProps({
     data: {
         default: [

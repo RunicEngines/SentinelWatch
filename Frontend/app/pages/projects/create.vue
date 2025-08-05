@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class=" text-white">
         <div class="justify-center flex m-32">
             <form class="w-fit justify-center flex flex-col">
                 <h1 class="text-2xl p-1 font-bold">Add a Project</h1>
@@ -29,32 +29,22 @@
                         <label class="text-gray-600">(optional)</label>
                     </div>
                     <textarea v-model="description" placeholder="Description of Project"
-                        class="mx-2 border rounded-lg hover:border-blue-500 p-2"></textarea>
+                        class="mx-2 border rounded-lg bg-gray-800 hover:border-blue-500 p-2"></textarea>
                 </div>
                 <div class="mt-4 mx-2">
                     <RadioGroup v-model="value" class="space-y-2">
                         <RadioGroupLabel class="text-sm font-medium">Project Status</RadioGroupLabel>
                         <div class="flex space-x-2">
-                            <RadioGroupOption 
-                                v-for="item in items" 
-                                :key="item.value"
-                                :value="item.value"
-                                v-slot="{ checked }"
-                                class="flex-1"
-                            >
-                                <div 
-                                    :class="[
-                                        checked ? 'bg-blue-500 text-white' : 'bg-gray-800 text-gray-300',
-                                        'p-3 rounded-lg cursor-pointer border'
-                                    ]"
-                                >
+                            <RadioGroupOption v-for="item in items" :key="item.value" :value="item.value"
+                                v-slot="{ checked }" class="flex-1">
+                                <div :class="[
+                                    checked ? 'bg-blue-500 text-white' : 'bg-gray-800 text-gray-300',
+                                    'p-3 rounded-lg cursor-pointer border'
+                                ]">
                                     <RadioGroupLabel as="p" class="font-medium">
                                         {{ item.label }}
                                     </RadioGroupLabel>
-                                    <RadioGroupDescription 
-                                        as="p" 
-                                        class="text-xs opacity-70"
-                                    >
+                                    <RadioGroupDescription as="p" class="text-xs opacity-70">
                                         {{ item.description }}
                                     </RadioGroupDescription>
                                 </div>
@@ -77,23 +67,23 @@
     </div>
 </template>
 <script setup lang="ts">
-import { 
-    RadioGroup, 
-    RadioGroupLabel, 
-    RadioGroupOption, 
-    RadioGroupDescription 
+import {
+    RadioGroup,
+    RadioGroupLabel,
+    RadioGroupOption,
+    RadioGroupDescription
 } from '@headlessui/vue'
 
+// Define page meta directly - no need to create a function
+definePageMeta({
+    layout: 'forms'
+})
 
 interface ProjectRequest {
     "description": string
     "enabled": boolean
     "name": string
 }
-
-definePageMeta({
-    layout: 'forms'
-})
 
 const items = [
     {
@@ -131,7 +121,7 @@ function Submit() {
             enabled: enabled.value,
             name: `${owner.value}/${repo.value}`
         }
-        let {data,error} = useFetch('/api/projects/post', {
+        let { data, error } = useFetch('/api/projects/post', {
             method: "POST",
             body: body
         })
@@ -140,10 +130,5 @@ function Submit() {
     } catch (err: any) {
         message.value = err.message || 'An unexpected error occurred'
     }
-}
-
-
-function definePageMeta(arg0: { layout: string }) {
-    throw new Error('Function not implemented.')
 }
 </script>
