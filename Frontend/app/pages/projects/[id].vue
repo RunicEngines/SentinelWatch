@@ -40,9 +40,7 @@ const { data: projectData } = await useFetch("/api/projects/get_id", {
     query: { id: projectId }
 })
 
-const { data: environments } = await useFetch("/api/environments/get_by_projectId", {
-    query: { id: projectId }
-})
+
 
 const projectName = projectData.value?.name || 'Project'
 const avatar = createAvatar(identicon, {

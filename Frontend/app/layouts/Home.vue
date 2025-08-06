@@ -37,7 +37,6 @@ if (response.data.value) {
     </header>
 
     <main class="flex bg-gray-800 w-full">
-
       <div class="   ">
         <div class=" bg-gray-900 border  w-75   h-screen">
           <div name="users"></div>
