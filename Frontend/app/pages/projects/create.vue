@@ -199,6 +199,7 @@ async function Submit() {
 
         message.value = "success"
         resetForm()
+        navigateTo("/")
 
     } catch (err) {
         console.error('Submit error:', err)
