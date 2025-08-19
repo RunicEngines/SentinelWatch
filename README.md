@@ -23,7 +23,6 @@ pnpm install
 ```
 
 ## Development Commands 💻
-
 | Command | Description |
 |---------|-------------|
 | `pnpm dev` | Start development server |
@@ -44,13 +43,23 @@ sentinel-watch-frontend/
     └── package.json
 ```
 
+## Designs & Diagrams 📊
+The project includes several design assets and diagrams located in the `Docs` directory:
+- `access.svg`: Access control diagrams
+- `diagram(4).svg`: System architecture diagrams
+- `environment.svg`: Environment configuration schemas
+- `home.svg`: Homepage layout designs
+- `Project.svg`: Project structure visualization
+- `scopes.svg`: Authorization scope diagrams
+
+These SVG files provide visual documentation of the system architecture, user flows, and component relationships. They can be viewed using any SVG-compatible viewer or modern web browser.
+
 ## Getting Started in 5 Steps
 1. Clone the repository
 2. Navigate to `Frontend` directory
 3. Enter Devbox shell
 4. Install dependencies
 5. Start development server
-
 ```bash
 git clone https://github.com/RunicEngines/SentinelWatch.git
 cd sentinel-watch-frontend/Frontend
@@ -81,13 +90,9 @@ pnpm dev
 ```bash
 # Linting (Not implemented yet)
 pnpm lint
-
 # Testing (Not implemented yet)
 pnpm test
 ```
 
-
-
 ## License
 AGPL-3.0 license
-
