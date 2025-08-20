@@ -16,22 +16,20 @@
 
                 <div>
                     <div class="text-lg flex w-full items-center mb-4">
-                        <p class="p-1.5">Environments</p>
-                        <NuxtLink :to="`/environments/${projectId}-create`"
+                        <p class="p-1.5">Project Access</p>
+                        <NuxtLink :to="`/project-access/${projectId}-create`"
                             class="ml-auto border flex items-center hover:bg-blue-400 px-2 h-7 bg-blue-500 rounded-lg">
-                            <p class="mr-1">Add Environment</p>
+                            <p class="mr-1">Add Project Access</p>
                             <FolderPlus />
                         </NuxtLink>
                     </div>
-
-                    <EnvironmentTable :id="projectId" />
+                    <ProjectAccess :id="projectId"></ProjectAccess>
                 </div>
                 
             </div>
         </div>
     </div>
 </template>
-
 <script setup>
 import { createAvatar } from '@dicebear/core'
 import { identicon } from '@dicebear/collection'

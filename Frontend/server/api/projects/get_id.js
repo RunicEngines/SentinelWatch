@@ -1,9 +1,13 @@
 export default defineEventHandler(async (event) => {
-    const project_id = getRouterParam(event,"id")
-    const {data} = await $fetch(`http://localhost:8080/projects/${project_id}`)
-    if (!data) {
-        return {error:"is emtpy"}
-    }else {
-        return data
+  const { id: project_id } = getQuery(event);
+
+  const response = await $fetch(
+    `http://localhost:8080/projects/${project_id}`,
+    {
+      method: "GET",
     }
-})
+  );
+
+
+  return response;
+});

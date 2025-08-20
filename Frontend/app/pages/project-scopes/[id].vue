@@ -1,11 +1,9 @@
 <template>
-    <div class="text-white flex h-screen flex-col">
+    <div class=" flex flex-col">
         <TopBar :id="projectId"></TopBar>
-        <div class=" flex ">
-        </div>
-        <div class="flex flex-col w-full justify-center">
-            <div class="m-auto w-4xl">
-                <div class="flex mt-10 justify-start">
+        <div class="  w-full flex ">
+            <div class="  m-auto ">
+                <div class="flex mt-10 justify-start text-white">
                     <div class="flex items-center">
                         <img class="h-7 rounded-lg mr-2" :src="avatar">
                         <p class="text-2xl">{{ projectName }}</p>
@@ -14,21 +12,18 @@
 
                 <div class="border w-full my-4"></div>
 
-                <div>
-                    <div class="text-lg flex w-full items-center mb-4">
-                        <p class="p-1.5">Environments</p>
-                        <NuxtLink :to="`/environments/${projectId}-create`"
-                            class="ml-auto border flex items-center hover:bg-blue-400 px-2 h-7 bg-blue-500 rounded-lg">
-                            <p class="mr-1">Add Environment</p>
-                            <FolderPlus />
-                        </NuxtLink>
-                    </div>
-
-                    <EnvironmentTable :id="projectId" />
+                <div class="text-lg flex w-full items-center mb-4">
+                    <p class="p-1.5 text-white">Project Scopes</p>
+                    <NuxtLink :to="`/project-scopes/${projectId}-create`"
+                        class="ml-auto border flex items-center hover:bg-blue-400 px-2 h-7 bg-blue-500 rounded-lg">
+                        <p class="mr-1">Add scopes</p>
+                        <FolderPlus />
+                    </NuxtLink>
                 </div>
-                
+                <ProjectScopesTable :id="projectId" />
             </div>
         </div>
+
     </div>
 </template>
 

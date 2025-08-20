@@ -1,18 +1,22 @@
 <template>
-    <div class=" ">
+    <div class="w-full">
         <div class="flex">
             <input v-model="search"
-                class="border-l-2 border-t-2 border-b-2 bg-gray-800 p-1  ml-2 border-gray-700 rounded-l-lg"
-                placeholder="Search here">
-            <Search class="h-10 w-8 border-t-2 border-b-2 border-r-2 rounded-r-lg border-gray-700 bg-gray-800" />
+                class="border-l-2 border-t-2 text-white border-b-2 bg-gray-800 p-1  ml-2 border-gray-700 rounded-l-lg"
+                placeholder="Search here  ">
+            <Search class="h-10 w-8 border-t-2 border-b-2 border-r-2 rounded-r-lg text-white border-gray-700 bg-gray-800" />
         </div>
-        <div class="p-2">
+        <div class="p-2 ">
             <div v-for="project in filteredProjects" :key="project.name" class="flex items-center mb-2">
-                <div  class="truncate  flex w-full hover:bg-gray-800 rounded-lg pl-2">
-                    <NuxtLink class="flex items-center " :to="`projects/${project.id}`">
+                <div class="text-white w-full hover:bg-gray-800 rounded-lg pl-2">
+                    <NuxtLink class="flex items-center min-w-0" :to="`projects/${project.id}`">
                         <img v-if="projectImages[project.name]" :src="projectImages[project.name]"
-                            class="w-5 h-5 mr-2 rounded-full" alt="Project Avatar">
-                        <div class=" hover:text-gray-200 text-gray-300  line-clamp-1">{{ project.name }}</div>
+                            class="w-5 h-5 mr-2 rounded-full flex-shrink-0" alt="Project Avatar">
+                        <div class="min-w-0 w-44 flex-1">
+                            <div class="        truncate  text-gray-300 hover:text-gray-200">
+                                {{ project.name }}
+                            </div>
+                        </div>
                     </NuxtLink>
                 </div>
             </div>
